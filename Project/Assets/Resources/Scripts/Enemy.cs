@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Friendly : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public float _moveSpeed = 2f;
     protected Rigidbody mRigidBody;
@@ -35,13 +35,14 @@ public class Friendly : MonoBehaviour
             target = turretObj.GetComponent<Turret>();
         }
 
+        // Get tank manager
         GameObject tankManagerObj = GameObject.Find("TankManager");
         if (tankManagerObj != null)
         {
             tankManager = tankManagerObj.GetComponent<TankManager>();
         }
 
-        tankManager.AddFriendlyToList(this);
+        tankManager.AddEnemyToList(this);
 
 
         mRigidBody = GetComponent<Rigidbody>();
@@ -62,12 +63,25 @@ public class Friendly : MonoBehaviour
     void Update()
     {
 
+        // use state cos u allow outside code to access mState
+        switch (state)
+        {
+            // Can only move when Idle or moving    
+            case State.MOVING:
+            case State.TAKING_DAMAGE:
+                break;
+            case State.DEATH:
+                break;
+            default:
+                break;
+        }
+
 
     }
 
     public void TakeDamage(float damage)
     {
-
+        Debug.Log("enemy taking damage");
         if ( mState != State.DEATH)
         {
             mHealth -= damage;
@@ -75,14 +89,16 @@ public class Friendly : MonoBehaviour
             {
                 state = State.DEATH;
             }
-                
+            
         }
     }
 
+
     protected void Death()
     {
-        tankManager.FriendlyKilled(this);
+        tankManager.EnemyKilled(this);
         Object.Destroy(this.gameObject);
+        Debug.Log("enemy shot");
     }
 
     private IEnumerator ChangeState(State state, float delay)
@@ -104,8 +120,9 @@ public class Friendly : MonoBehaviour
 
         if (Vector3.Distance(transform.position, target.transform.position) < 2f)
         {
-            tankManager.FriendlyReachedTurret(this);
+            tankManager.EnemyReachedTurret(this);
             Object.Destroy(this.gameObject);
+            Debug.Log("enemy reached target");
         }
     }
 
@@ -113,18 +130,7 @@ public class Friendly : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
-        switch (mState)
-        {
-            case State.MOVING:
-                Move();
-                break;
-
-            case State.DEATH:
-                break;
-            default:
-                break;
-        }
+        Move();
     }
 
     public State state
@@ -141,10 +147,8 @@ public class Friendly : MonoBehaviour
                     case State.TAKING_DAMAGE:
                         break;
                     case State.DEATH:
-                        Debug.Log("property set to death");
                         Death();
                         break;
-
                     default:
                         break;
 

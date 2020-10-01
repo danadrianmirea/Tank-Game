@@ -1,0 +1,23 @@
+{
+    "My Behavior": {
+        "checkpoints": [
+            {
+                "steps": 544,
+                "file_path": "results\\Turret-4-train\\My Behavior\\My Behavior-544.nn",
+                "reward": -1.0,
+                "creation_time": 1601561229.7261999
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 544,
+            "file_path": "results\\Turret-4-train\\My Behavior.nn",
+            "reward": -1.0,
+            "creation_time": 1601561229.7261999
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.1.0",
+        "mlagents_version": "0.20.0",
+        "tensorflow_version": "2.3.1"
+    }
+}

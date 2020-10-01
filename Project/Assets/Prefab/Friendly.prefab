@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 1916700498721935129}
   m_Layer: 0
   m_Name: Friendly
-  m_TagString: Untagged
+  m_TagString: friendly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 2
   target: {fileID: 0}
+  tankManager: {fileID: 0}
   _maxHealth: 0
 --- !u!1 &6093863561030928874
 GameObject:

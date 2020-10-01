@@ -1,0 +1,42 @@
+{
+    "name": "root",
+    "metadata": {
+        "timer_format_version": "0.1.0",
+        "start_time_seconds": "1601559800",
+        "python_version": "3.6.12 |Anaconda, Inc.| (default, Sep  9 2020, 00:29:25) [MSC v.1916 64 bit (AMD64)]",
+        "command_line_arguments": "C:\\Users\\limxu\\anaconda3\\envs\\mlagents\\Scripts\\mlagents-learn config/turret_config.yaml --run-id=Turret-1-train",
+        "mlagents_version": "0.20.0",
+        "mlagents_envs_version": "0.20.0",
+        "communication_protocol_version": "1.1.0",
+        "tensorflow_version": "2.3.1",
+        "numpy_version": "1.19.2",
+        "end_time_seconds": "1601559865"
+    },
+    "total": 64.8904958,
+    "count": 1,
+    "self": 0.6509194999999863,
+    "children": {
+        "run_training.setup": {
+            "total": 0.0296916,
+            "count": 1,
+            "self": 0.0296916
+        },
+        "TrainerController.start_learning": {
+            "total": 64.2098847,
+            "count": 1,
+            "self": 0.001705300000011789,
+            "children": {
+                "TrainerController._reset_env": {
+                    "total": 64.15839679999999,
+                    "count": 1,
+                    "self": 64.15839679999999
+                },
+                "TrainerController._save_models": {
+                    "total": 0.04978260000000034,
+                    "count": 1,
+                    "self": 0.04978260000000034
+                }
+            }
+        }
+    }
+}
